@@ -48,21 +48,22 @@ function init() {
     Cubo.push(cubo(dim,dim,dim, 0xFF0000, 'Standard', false)); 
     Cubo.push(cubo(dim,dim,dim, 0x00FFFF, 'Standard', false)); 
 
+    angulo = Math.PI/2;
     delta = 5;
     Cubo[0].position.set(0, 0, 0);  //Creacion del cubo 1
-    scene.add(Cubo[0]);           // Agregar el cubo 1 a escnea 
     Cubo[0].translateX ( delta );  // El método usado recibe como parametro el movimiento unicamente en el eje X
+   //  Cubo[0].rotateOnWorldAxis ( 1,0,0 , angulo); 
     scene.add(Cubo[0]);
 
 
     Cubo[1].position.set(0, 0, 0); //Creacion del cubo 2
-    scene.add(Cubo[1]);           // Agregar el cubo 2 a escena 
-     Cubo[1].translateY ( delta ); //El método usado recibe como parametro el movimiento unicamente en el eje Y
+    Cubo[1].translateY ( delta ); //El método usado recibe como parametro el movimiento unicamente en el eje Y
+    Cubo[1].rotateOnWorldAxis ( 0,1,0 , angulo); 
     scene.add(Cubo[1]);
 
     Cubo[2].position.set(0, 0, 0); // Creacion del cubo 2 
-    scene.add(Cubo[2]);           // Agregar el cubo 3 a escena 
-     Cubo[2].translateZ ( delta ); // El método usado recibe como parametro el movimiento unicamente en el eje Z
+    Cubo[2].translateZ ( delta ); // El método usado recibe como parametro el movimiento unicamente en el eje Z
+    Cubo[2].rotateOnWorldAxis ( 0,0,1 , angulo);  //<! Al inicio se uso el metodo rotate pero los cubos se girbana sobre su porpio centro, luego se usa el metodo rotateOnWorldAxis y los cubos desparecen>
     scene.add(Cubo[2]);
 
 
