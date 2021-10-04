@@ -1,10 +1,8 @@
 // create a scene, that will hold all our elements such as objects, cameras and lights. 
 var scene = new THREE.Scene();
-var dim =  x,y,z;
-var dim = new dim (10,10,10);
 
-function cubo(dim, color, material, alambrado){
-    var cubeGeometry = new THREE.BoxGeometry(dim);
+function cubo(x, y, z, color, material, alambrado){
+    var cubeGeometry = new THREE.BoxGeometry(x , y, z);
     var cubeMaterial;
     switch(material){
      case 'Basic': cubeMaterial = new THREE.MeshBasicMaterial({color: color, wireframe: alambrado});
@@ -33,7 +31,7 @@ function init() {
     // create a scene, that will hold all our elements such as objects, cameras and lights.
 
     // create a camera, which defines where we're looking at.
-    var camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 
     // create a render and set the size
     var renderer = new THREE.WebGLRenderer();
@@ -41,29 +39,30 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     // show axes in the screen
-    var axes = new THREE.AxesHelper(10);
+    var axes = new THREE.AxesHelper(25);
     scene.add(axes);
 
     Cubo = [];   // Definir un array unidimensional
-    Cubo.push(cubo(dim, 0xFFDD00, 'Standard', false)); 
-    Cubo.push(cubo(dim, 0xFF0000, 'Standard', false)); 
-    Cubo.push(cubo(dim, 0x00FFFF, 'Standard', false)); 
+    dim = 2;
+    Cubo.push(cubo(dim,dim,dim, 0xFFDD00, 'Standard', false)); 
+    Cubo.push(cubo(dim,dim,dim, 0xFF0000, 'Standard', false)); 
+    Cubo.push(cubo(dim,dim,dim, 0x00FFFF, 'Standard', false)); 
 
-
-    Cubo[0].position.set(0, 0, 0);
+    delta = 5;
+    Cubo[0].position.set(0, 0, 0);  //Creacion del cubo 1
+    scene.add(Cubo[0]);           // Agregar el cubo 1 a escnea 
+    Cubo[0].translateX ( delta );  // El método usado recibe como parametro el movimiento unicamente en el eje X
     scene.add(Cubo[0]);
-    Cubo[0].translateX ( 2.0 ); //El metodo usado recibe como parametro el movimiento unicamente en el eje X
-    scene.add(Cubo[0]);
 
 
-    Cubo[1].position.set(0, 0, 0);
-    scene.add(Cubo[1]);
-     Cubo[1].translateY ( 2.0 ); //El metodo usado recibe como parametro el movimiento unicamente en el eje Y
+    Cubo[1].position.set(0, 0, 0); //Creacion del cubo 2
+    scene.add(Cubo[1]);           // Agregar el cubo 2 a escena 
+     Cubo[1].translateY ( delta ); //El método usado recibe como parametro el movimiento unicamente en el eje Y
     scene.add(Cubo[1]);
 
-    Cubo[2].position.set(0, 0, 0);
-    scene.add(Cubo[2]);
-     Cubo[2].translateZ ( 2.0 ); //El metodo usado recibe como parametro el movimiento unicamente en el eje Z
+    Cubo[2].position.set(0, 0, 0); // Creacion del cubo 2 
+    scene.add(Cubo[2]);           // Agregar el cubo 3 a escena 
+     Cubo[2].translateZ ( delta ); // El método usado recibe como parametro el movimiento unicamente en el eje Z
     scene.add(Cubo[2]);
 
 
